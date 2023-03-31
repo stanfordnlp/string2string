@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="string2string",
-    version="0.0.145.2",
+    version="0.0.146",
     description="String-to-String Algorithms for Natural Language Processing",
     url="https://github.com/suzgunmirac/string2string",
     author="Mirac Suzgun",
@@ -19,6 +19,7 @@ setup(
         "bert_score",
         "fasttext",
         "pandas",
+        "joblib",
     ],
     tests_require=["pytest"],
     classifiers=[

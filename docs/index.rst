@@ -15,6 +15,10 @@ Welcome to string2string's documentation!
    matching
    similarity
    embedding
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Hands-On Tutorials:
    hupd_example
    plagiarism_detection
 

@@ -11,3 +11,4 @@ fasttext
 transformers
 datasets
 bert_score
+joblib
