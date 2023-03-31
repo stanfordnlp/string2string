@@ -13,7 +13,6 @@
         (i) TER
         (j) WER
         (k) CER
-
 """
 
 
@@ -21,10 +20,10 @@ from typing import List, Union, Tuple, Optional
 import numpy as np
 
 # # Import the LongestCommonSubsequence class
-from string2string.alignment.classical import LongestCommonSubsequence
+from string2string.alignment.classical import LongestCommonSubsequence, LongestCommonSubstring
 
 # Longest Common Subsequence based similarity class
-class LCSimilarity(LongestCommonSubsequence):
+class LCSubsequenceSimilarity(LongestCommonSubsequence):
     """
     This class contains the Longest Common Subsequence similarity metric.
 
@@ -53,13 +52,56 @@ class LCSimilarity(LongestCommonSubsequence):
         Raises:
             ValueError: If the denominator is invalid.
         """
+
+        # Get the numerator
+        numerator, _ = super().compute(str1, str2)
+
         if denominator == 'max':
-            return super().compute(str1, str2) / max(len(str1), len(str2))
+            return (numerator / max(len(str1), len(str2)))
         elif denominator == 'sum':
-            return 2. * super().compute(str1, str2) / (len(str1) + len(str2))
+            return (2. * numerator / (len(str1) + len(str2)))
         else:
             raise ValueError('Invalid denominator.')
+        
 
+# Longest Common Substring based similarity class
+class LCSubsubstringSimilarity(LongestCommonSubstring):
+    """
+    This class contains the Longest Common Substring similarity metric.
+
+    This class inherits from the LongestCommonSubstring class.
+    """
+    def __init__(self):
+        super().__init__()
+
+    def compute(self,
+        str1: Union[str, List[str]],
+        str2: Union[str, List[str]],
+        denominator: str = 'max',
+    ) -> float:
+        """
+        Returns the LCS-similarity between two strings.
+
+        Arguments:
+            str1 (Union[str, List[str]]): The first string or list of strings.
+            str2 (Union[str, List[str]]): The second string or list of strings.
+            denominator (str): The denominator to use. Options are 'max' and 'sum'. Default is 'max'.
+
+        Returns:
+            float: The similarity between the two strings.
+
+        Raises:
+            ValueError: If the denominator is invalid.
+        """
+        # Get the numerator
+        numerator, _ = super().compute(str1, str2)
+
+        if denominator == 'max':
+            return (numerator / max(len(str1), len(str2)))
+        elif denominator == 'sum':
+            return (2. * numerator / (len(str1) + len(str2)))
+        else:
+            raise ValueError('Invalid denominator.')
 
 # Jaro similarity class
 class JaroSimilarity:
@@ -148,7 +190,4 @@ class JaroSimilarity:
 
         # Return the Jaro similarity
         return (num_matches / len1 + num_matches / len2 + (num_matches - num_transpositions) / num_matches) / 3.0
-
-       
-# jaro = JaroSimilarity()
-# print(jaro.compute('FAREMVIEL', 'FARMVILLE'))
+    

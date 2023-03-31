@@ -22,7 +22,7 @@ class ROUGE:
         This function initializes the ROUGE class, which is a wrapper for the ROUGE metric from Google Research's rouge_score package.
 
         Arguments:
-            rouge_types (Union[str, List[str]]): The ROUGE types to use. Default is ["rouge1", "rouge2", "rougeL", "rougeLsum"].
+            tokenizer (Tokenizer): The tokenizer to use. Default is None.
 
         Returns:
             None

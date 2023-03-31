@@ -4,3 +4,4 @@ transformers
 datasets
 fasttext
 bert_score
+networkx

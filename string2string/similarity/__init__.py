@@ -2,4 +2,4 @@
 from .bertscore import BERTScore
 from .bartscore import BARTScore
 from .cosine_similarity import CosineSimilarity
-from .classical import LCSimilarity, JaroSimilarity
+from .classical import LCSubsubstringSimilarity, LCSubsequenceSimilarity, JaroSimilarity

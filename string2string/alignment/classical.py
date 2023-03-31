@@ -8,6 +8,9 @@
         Hirschberg: Hirschberg algorithm.
 """
 
+import multiprocessing
+from joblib import Parallel, delayed
+from tqdm import tqdm
 from typing import List, Union, Tuple, Optional
 import numpy as np
 from string2string.misc.basic_functions import cartesian_product
@@ -225,8 +228,6 @@ class StringAlignment:
         Returns:
             None.
         """
-        # Print the alignment.
-        # print("Score:", self.get_alignment_score(str1, str2))
         print(str1)
         print(str2)
 
@@ -259,8 +260,47 @@ class StringAlignment:
                 alignment_indices.append((i, i))
         
         return alignment_indices, sym1, sym2
+    
 
+    # Compute miltiple pairs in parallel using multiprocessing.
+    def compute_multiple_pairs(self,
+        pairs: List[Tuple[Union[str, List[str]], Union[str, List[str]]]],
+        num_workers: int = 1,
+        method: str = "multiprocessing",
+        **kwargs,
+    ) -> List[Tuple[float, Union[List[str], List[List[str]]]]]:
+        """
+        This "meta" function computes the alignment score of multiple pairs of strings (or lists of strings) in parallel.
 
+        Arguments:
+            pairs (list of tuples): A list of tuples, where each tuple contains two strings (or lists of strings).
+            num_workers (int): The number of workers to use for multiprocessing.
+            method (str): The method to use for parallelization. Options are "multiprocessing" and "joblib".
+            **kwargs: Additional keyword arguments to pass to the compute function.
+
+        Returns:
+            A list of tuples, where each tuple contains the alignment score and the alignment of the two strings (or lists of strings), based on the compute function.
+
+        .. note::
+            * This function uses multiprocessing, either via the multiprocessing module or via joblib.
+            * The multiprocessing module is used by default, but joblib can be used instead by setting method="joblib".
+            * We found that joblib is empirically faster than multiprocessing for this particular problem.
+        """
+        # Compute the alignment score of multiple pairs of strings in parallel.
+        if method == "multiprocessing":
+            with multiprocessing.Pool(num_workers) as pool:
+                results = pool.starmap(
+                    self.compute,
+                    [(pair[0], pair[1], kwargs) for pair in pairs],
+                )
+        elif method == "joblib":
+            results = Parallel(n_jobs=num_workers)(
+                delayed(self.compute)(pair[0], pair[1], **kwargs) for pair in tqdm(pairs)
+            )
+        else:
+            raise ValueError(f"Invalid method: {method}")
+        return results
+    
 
 # Needleman-Wunsch algorithm class
 class NeedlemanWunsch(StringAlignment):
@@ -996,7 +1036,6 @@ class LongestCommonSubsequence(StringAlignment):
         str1: Union[str, List[str]],
         str2: Union[str, List[str]],
         returnCandidates: bool = False,
-        boolListOfList: bool = False,
     ) -> Tuple[float, Union[List[str], List[List[str]]]]:
         """
         This function computes the longest common subsequence between two strings (or lists of strings).
@@ -1005,7 +1044,6 @@ class LongestCommonSubsequence(StringAlignment):
             str1 (str or list of str): The first string (or list of strings) to compare.
             str2 (str or list of str): The second string (or list of strings).
             returnCandidates (bool): Whether to return the candidates for the longest common subsequence (default: False).
-            boolListOfList (bool): Whether the inputs are lists of strings (default: False).
 
         Returns:
             * If returnCandidates is False, then the length of the longest common subsequence between the two strings.
@@ -1015,6 +1053,11 @@ class LongestCommonSubsequence(StringAlignment):
            * Similar to that of the Levenshtein edit distance problem, the dynamic programming solution for the longest common subsequence problem can be further optimized by using the last row of the two-dimensional array L to compute the length of the LCSubsequence. The key idea behind this optimization is that the last row of the array L only depends on the values of the previous row. Therefore, we can store only two rows of the array L at a time and compute the LCSubsequence using these two rows.
            * This optimization reduces the space complexity of the algorithm to :math:`\mathcal{O}(m)`, where :math:`m` is the length of the shorter input string. This optimization is particularly useful when one of the input strings is much shorter than the other, as it can significantly reduce the amount of memory required to solve the problem.
         """
+        # Check whether the inputs are lists of strings.
+        boolList = False
+        if isinstance(str1, list) and isinstance(str2, list):
+            boolList = True
+
         # Lengths of strings str1 and str2, respectively.
         n = len(str1)
         m = len(str2)
@@ -1045,20 +1088,20 @@ class LongestCommonSubsequence(StringAlignment):
             """
             # If the row or column index is 0, then the longest common subsequence is empty.
             if i == 0 or j == 0:
-                # return [''] if boolListOfList else [] // This is the original code.
+                # return [''] if boolList else [] // This is the original code.
                 return []
 
             # If the characters at the current row and column of the distance matrix are equal, then the current character is part of the longest common subsequence.
             # if str1[i-1] == str2[j-1]: # This is the original code. changed: 2023-03-19, 10:05 PM
             if self.bool_match(str1[i-1], str2[j-1]):
-                # insert_elt = str1[i-1] if boolListOfList else str1[i-1] // This is the original code.
-                insert_elt = [str1[i-1]] if boolListOfList else str1[i-1]
+                # insert_elt = str1[i-1] if boolList else str1[i-1] // This is the original code.
+                insert_elt = [str1[i-1]] if boolList else str1[i-1]
                 candidates = list(
                     set(
                         cartesian_product(
                             backtrack(i-1, j-1),
                             insert_elt,
-                            boolListOfList=boolListOfList,
+                            boolList=boolList,
                             list_of_list_separator=self.list_of_list_separator,
                         )
                     ) 
@@ -1077,7 +1120,7 @@ class LongestCommonSubsequence(StringAlignment):
         candidates = None
         if returnCandidates:
             candidates = backtrack(n, m)
-            if boolListOfList:
+            if boolList:
                 candidates = [
                     elt.split(self.list_of_list_separator) for elt in candidates
                 ]
@@ -1129,7 +1172,6 @@ class LongestCommonSubstring(LongestCommonSubsequence):
         str1: Union[str, List[str]],
         str2: Union[str, List[str]],
         returnCandidates: bool = False,
-        boolListOfList: bool = False,
     ) -> Tuple[float, Union[List[str], List[List[str]]]]:
         """
         This function computes the longest common substring between two strings (or lists of strings).
@@ -1138,7 +1180,6 @@ class LongestCommonSubstring(LongestCommonSubsequence):
             str1 (str or list of str): The first string (or list of strings).
             str2 (str or list of str): The second string (or list of strings).
             returnCandidates (bool): A boolean flag indicating whether to return the longest common substring as a list of lists.
-            boolListOfList (bool): A boolean flag indicating whether to return the longest common substring as a list of lists.
 
         Returns:
             If returnCandidates is False, then the length of the longest common substring between the two strings. If returnCandidates is True, then the set of longest common substrings between the two strings (or lists of strings) is also returned.
@@ -1151,6 +1192,11 @@ class LongestCommonSubstring(LongestCommonSubsequence):
             * It's important to note that the longest common substring is different from the longest common subsequence. The longest common substring is a contiguous sequence of symbols that appears in both strings, while the longest common subsequence is a sequence of characters that may not be contiguous.
             * The longest common substring is a measure of similarity between two strings and is used in various fields, including computational biology, where it is used to compare DNA sequences. Similarly, it is also used in plagirism detection and other applications.
         """
+        # Determine whether the inputs are lists of strings.
+        boolList = False
+        if isinstance(str1, list) and isinstance(str2, list):
+            boolList = True
+        
         # Lengths of strings str1 and str2, respectively.
         n = len(str1)
         m = len(str2)
@@ -1183,7 +1229,7 @@ class LongestCommonSubstring(LongestCommonSubsequence):
         # If returnCandidates is True, then additionally return the set of longest common substrings.
         if returnCandidates:
             longest_common_substring_candidates = [str1[i-longest_common_substring_length:i] for i in longest_common_substring_indices]
-            if boolListOfList:
+            if boolList:
                 # TODO(msuzgun): Double check this. Correct, but there might be a better way to do this.
                 longest_common_substring_candidates = list(set(
                     [

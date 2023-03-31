@@ -1,8 +1,10 @@
 """
 Unit tests for the distance module.
 """
+import string
 import unittest
 from unittest import TestCase
+import random
 
 from string2string.alignment import (
     NeedlemanWunsch,
@@ -58,7 +60,6 @@ class AlignmentTestCase(TestCase):
         length, candidates = lcsubsequence.compute(
             ["abcd"], ["xcxaaabydy"], 
             returnCandidates=True, 
-            boolListOfList=True
         )
         self.assertEqual(length, 0.0)
         self.assertCountEqual(candidates,[])
@@ -67,7 +68,6 @@ class AlignmentTestCase(TestCase):
             ["a", "bb", "c"],
             ["a", "bb", "c"],
             returnCandidates=True,
-            boolListOfList=True,
         )
         self.assertEqual(length, 3.0)
         self.assertCountEqual(candidates, [["a", "bb", "c"]])
@@ -76,7 +76,6 @@ class AlignmentTestCase(TestCase):
             ["a", "b", "c", "dd"],
             ["x", "c", "x", "a", "a", "a", "b", "y", "dd", "y"],
             returnCandidates=True,
-            boolListOfList=True,
         )
         self.assertEqual(length, 3.0)
         self.assertCountEqual(candidates, [["a", "b", "dd"]])
@@ -85,13 +84,13 @@ class AlignmentTestCase(TestCase):
             ["a", "t", "b", "c", "y", "dd", "xyz"],
             ["x", "c", "x", "t", "a", "a", "a", "b", "y", "dd", "y", "xyz"],
             returnCandidates=True,
-            boolListOfList=True,
         )
         self.assertEqual(length, 5.0)
         self.assertCountEqual(
             candidates, [["t", "b", "y", "dd", "xyz"], ["a", "b", "y", "dd", "xyz"]]
         )
 
+    
     # Testing LongestCommonSubstring
     def test_longest_common_subsubtring(self):
         lcsubstring = LongestCommonSubstring()
@@ -135,7 +134,6 @@ class AlignmentTestCase(TestCase):
             ["x", "y", "x", "y"],
             ["y", "x", "y", "x"],
             returnCandidates=True,
-            boolListOfList=True,
         )
         self.assertEqual(length, 3)
         self.assertCountEqual(
@@ -145,8 +143,7 @@ class AlignmentTestCase(TestCase):
         # Example 6
         length, candidates = lcsubstring.compute(
             ["a", "a", "a", "a"], ["a"], 
-            returnCandidates=True, 
-            boolListOfList=True
+            returnCandidates=True,
         )
         self.assertEqual(length, 1)
         self.assertCountEqual(
@@ -167,6 +164,7 @@ class AlignmentTestCase(TestCase):
         )
         self.assertEqual(length, 5)
         self.assertCountEqual(candidates, [" juli"])
+
 
     # Testing NeedlemanWunsch
     def test_needleman_wunsch(self):
@@ -285,6 +283,7 @@ class AlignmentTestCase(TestCase):
         self.assertEqual(aligned_str1, "G | A | T | T | A | C | A")
         self.assertEqual(aligned_str2, "G | C | A | T | G | C | U")
 
+
     # Testing SmithWaterman
     def test_smithwaterman(self):
         smithwaterman = SmithWaterman(
@@ -321,6 +320,7 @@ class AlignmentTestCase(TestCase):
         )
         self.assertEqual(aligned_str1, "C | T | A | - | C | G | G")
         self.assertEqual(aligned_str2, "C | T | A | T | C | G | G")
+
 
     # Testing DTW
     def test_dtw(self):
@@ -361,6 +361,45 @@ class AlignmentTestCase(TestCase):
         )
         self.assertCountEqual(alignment, [(0, 0), (1, 0), (2, 1), (2, 2), (2, 3)])
 
+
+    # Auxiliary function that generates a random string of length n
+    def generate_random_string(self, bound: int):
+        alphabet = string.ascii_lowercase
+        n = random.randint(1, bound)
+        return "".join(random.choice(alphabet) for i in range(n))
+
+
+    # Testing parallelization/multiprocessing
+    def test_parallelization(self):
+        # Generate 50 random strings of length 100
+        random_test_pairs = [
+            (self.generate_random_string(100), self.generate_random_string(100))
+            for i in range(50)
+        ]
+
+        # Instantiate the LongestCommonSubstring class
+        lcsubstring = LongestCommonSubstring()
+
+        # Compute the results serially
+        results_serial = [
+            lcsubstring.compute(str1=str1, str2=str2) for str1, str2 in random_test_pairs
+        ]
+        # Compute the results in parallel
+        results_parallel = lcsubstring.compute_multiple_pairs(random_test_pairs)
+        # Check that the results are the same
+        self.assertEqual(results_serial, results_parallel)
+
+
+        # Instantiate the LongestCommonSubsequence class
+        lcsubsequence = LongestCommonSubsequence()
+        # Compute the results serially
+        results_serial = [
+            lcsubsequence.compute(str1=str1, str2=str2) for str1, str2 in random_test_pairs
+        ]
+        # Compute the results in parallel
+        results_parallel = lcsubsequence.compute_multiple_pairs(random_test_pairs)
+        # Check that the results are the same
+        self.assertEqual(results_serial, results_parallel)
 
 if __name__ == "__main__":
     unittest.main()

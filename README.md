@@ -31,11 +31,16 @@ Once the installation is complete, you can import the library and start using it
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def2] [Tutorial: Distance Tasks and Algorithms][def2]
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def3] [Tutorial: Search Tasks and Algorithms][def3]
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def4] [Tutorial: Similarity Tasks and Algorithms][def4]
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def5] [Hands-on Tutorial: Semantic Search and Visualization of USPTO Patents)][def5]
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def5] [Hands-on Tutorial: Semantic Search and Visualization of USPTO Patents][def5]
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def6] [Hands-On Tutorial: Plagiarism Detection of Essays][def6]
 
 ## Example Usage
 
 ### Alignment
+
+In the following example, we illustrate how to align two sequences of strings globally by using the Needleman-Wunsch algorithm. This algorithm, along with other alignment techniques, can be found in the alignment module of the library. The code snippet below demonstrates how to apply the Needleman-Wunsch algorithm to perform a global alignment of two given strings.
+
+This example provides a practical illustration of how to use the Needleman-Wunsch algorithm to solve the problem of sequence alignment, which is a fundamental problem in bioinformatics.
 
 ```python
 >>> # Import the NeedlemanWunsch class from the alignment module
@@ -66,6 +71,8 @@ X | ATT | - | GC | GC | A | A | G
 
 
 ### Distance
+
+The following code snippet demonstrates how to use the Levenshtein edit distance algorithm to compute the edit distance between two strings, at the character level and at the word level.
 
 ```python
 >>> # Let's create a Levenshtein edit distance class instance, with the default (unit cost) weights, from the distance module
@@ -99,6 +106,8 @@ X | ATT | - | GC | GC | A | A | G
 
 ### Search
 
+The following code snippet demonstrates how to use the Knuth-Morrs-Pratt (KMP) search algorithm to find the index of a pattern in a text.
+
 ```python
 >>> # Let's create a KMPSearch class instance from the search module
 >>> from string2string.search import KMPSearch
@@ -116,6 +125,10 @@ X | ATT | - | GC | GC | A | A | G
 ```
 
 ### Faiss Semantic Search
+
+The example below demonstrates how to use the [Faiss](https://github.com/facebookresearch/faiss) tool developed by FAIR to perform semantic search. First, we use the BART-Large model to generate embeddings for a small corpus of 25 sentences. To perform the search, we first encode a query sentence using the same BART model and use it to search the corpus. Specifically, we search for sentences that are most similar in meaning to the query sentence. After performing the search, we print the top thre sentences from the corpus that are most similar to the query sentence. 
+
+This approach can be useful in a variety of natural-processing applications, such as question-answering and information retrieval, where it is essential to find relevant information quickly and accurately.
 
 ```python
 >>> # Let's create a FaissSearch class instance from the search module to perform semantic search
@@ -185,6 +198,10 @@ X | ATT | - | GC | GC | A | A | G
 
 ### Similarity
 
+The following example demonstrates how to use pre-trained GloVe embeddings to calculate the cosine similarity between different pairs of words. Specifically, we compute the cosine similarity between the embeddings of four words: "cat", "dog", "phone", and "computer". We then create a similarity matrix and use the plot_heatmap function in the visualization module to plot this matrix.
+
+Overall, this example provides a practical demonstration of how to use pre-trained embeddings such as GloVe and fastText to quantify the semantic similarity between pairs of words, which can be useful in a variety of natural-language processing tasks.
+
 ```python
 >>> # Let's create a Cosine Similarity class instance from the similarity module
 >>> from string2string.similarity import CosineSimilarity
@@ -248,3 +265,4 @@ We would like to thank the following people for their contributions to this proj
 [def3]: https://colab.research.google.com/drive/1wu-JOyivxn_52SreF2ukYY7xi4uFVuAx?usp=sharing
 [def4]: https://colab.research.google.com/drive/1qNDIkVCEMOVW4WySmzQBvrNAzZ4-zORT?usp=sharing
 [def5]: https://colab.research.google.com/drive/1lpXNQn2DSuJB-0iQ-x3h_jx-6-laGpNk?usp=sharing
+[def6]: https://colab.research.google.com/drive/1TsMT3DESGY4BNkk-ZRDaL70CRTqrQAtB?usp=sharing
