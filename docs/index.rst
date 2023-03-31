@@ -16,6 +16,7 @@ Welcome to string2string's documentation!
    similarity
    embedding
    hupd_example
+   plagiarism_detection
 
 
 
