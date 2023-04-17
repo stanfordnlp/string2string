@@ -11,6 +11,8 @@ fasttext
 transformers
 datasets
 bert_score
+rouge_score
 sacrebleu
 joblib
+matplotlib
 plotly
