@@ -10,13 +10,17 @@
 [![license](https://img.shields.io/github/license/suzgunmirac/string2string.svg)](https://github.com/suzgunmirac/string2string/blob/main/LICENSE.txt)
 [![arXiv](https://img.shields.io/badge/arXiv-2211.07634-b31b1b.svg)](https://arxiv.org/abs/2211.07634)
 
-* **Table of Contents:** [**Getting Started**](#getting-started) | [**Tutorials**](#tutorials) | [**Example Usage**](#example-usage) | [**Documentation**](https://string2string.readthedocs.io/en/latest/) | [**Citation**](#citation) | [**Thanks**](#thanks) 
+## Table of Contents
 
-The **string2string** library is an open-source tool that offers a comprehensive suite of efficient algorithms for a broad range of string-to-string problems. It includes both traditional algorithmic solutions and recent advanced neural approaches to address various problems in pairwise string alignment, distance measurement, lexical and semantic search, and similarity analysis. Additionally, the library provides several helpful visualization tools and metrics to facilitate the interpretation and analysis of these methods. 
+[**Getting Started**](#getting-started) | [**Tutorials**](#tutorials) | [**Example Usage**](#example-usage) | [**Documentation**](https://string2string.readthedocs.io/en/latest/) | [**Tests**](https://github.com/suzgunmirac/string2string/tree/main/tests) | [**Citation**](#citation) | [**Thanks**](#thanks) | [**Contributing**](#contributing) 
 
-The library features notable algorithms such as the [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm) for pairwise local alignment, the [Hirschberg algorithm](https://en.wikipedia.org/wiki/Hirschberg%27s_algorithm) for global alignment, the [Wagner-Fisher algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm) for [edit distance](https://en.wikipedia.org/wiki/Edit_distance), [BARTScore](https://github.com/neulab/BARTScore) and [BERTScore](https://github.com/Tiiiger/bert_score) for similarity analysis, the [Knuth-Morris-Pratt](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) algorithm for lexical search, and [Faiss](https://github.com/facebookresearch/faiss) for [semantic search](https://en.wikipedia.org/wiki/Semantic_search). Moreover, it wraps existing highly efficient and widely-used implementations of certain frameworks and metrics, such as [sacreBLEU](https://github.com/mjpost/sacrebleu) and [ROUGE](https://github.com/google-research/google-research/tree/master/rouge), whenever it is appropriate and suitable. 
+## Abstract
 
-In general, the string2string library seeks to provide extensive coverage and increased flexibility compared to existing libraries for strings. It can be used for many downstream applications, tasks, and problems in natural-language processing, bioinformatics, and computational social sciences. With its comprehensive suite of algorithms, visualization tools, and metrics, the string2string library is a valuable resource for researchers and practitioners in various fields.
+The **string2string** library is an open-source tool that offers a comprehensive suite of efficient algorithms for a broad range of string-to-string problems. It includes both traditional algorithmic solutions and recent advanced neural approaches to address various problems in pairwise string alignment, distance measurement, lexical and semantic search, and similarity analysis. Additionally, the library provides several helpful visualization tools and metrics to facilitate the interpretation and analysis of these methods.
+
+The library features notable algorithms such as the [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm) for pairwise local alignment, the [Hirschberg algorithm](https://en.wikipedia.org/wiki/Hirschberg%27s_algorithm) for global alignment, the [Wagner-Fisher algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm) for [edit distance](https://en.wikipedia.org/wiki/Edit_distance), [BARTScore](https://github.com/neulab/BARTScore) and [BERTScore](https://github.com/Tiiiger/bert_score) for similarity analysis, the [Knuth-Morris-Pratt](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) algorithm for lexical search, and [Faiss](https://github.com/facebookresearch/faiss) for [semantic search](https://en.wikipedia.org/wiki/Semantic_search). Moreover, it wraps existing highly efficient and widely-used implementations of certain frameworks and metrics, such as [sacreBLEU](https://github.com/mjpost/sacrebleu) and [ROUGE](https://github.com/google-research/google-research/tree/master/rouge), whenever it is appropriate and suitable.
+
+In general, the [**string2string**](https://string2string.readthedocs.io/en/latest/) library seeks to provide extensive coverage and increased flexibility compared to existing libraries for strings. It can be used for many downstream applications, tasks, and problems in natural-language processing, bioinformatics, and computational social sciences. With its comprehensive suite of algorithms, visualization tools, and metrics, the string2string library is a valuable resource for researchers and practitioners in various fields.
 
 ## Getting Started
 
@@ -130,7 +134,7 @@ The following code snippet demonstrates how to use the [Knuth-Morrs-Pratt (KMP) 
 
 ### Faiss Semantic Search
 
-The example below demonstrates how to use the [Faiss](https://github.com/facebookresearch/faiss) tool developed by FAIR to perform semantic search. First, we use the [BART-Large model from Hugging Face](https://huggingface.co/facebook/bart-large) to generate embeddings for a small corpus of 25 sentences. To perform the search, we first encode a query sentence using the same BART model and use it to search the corpus. Specifically, we search for sentences that are most similar in meaning to the query sentence. After performing the search, we print the top thre sentences from the corpus that are most similar to the query sentence. 
+The example below demonstrates how to use the [Faiss](https://github.com/facebookresearch/faiss) tool developed by FAIR to perform semantic search. First, we use the [BART-Large model from Hugging Face](https://huggingface.co/facebook/bart-large) to generate embeddings for a small corpus of 25 sentences. To perform the search, we first encode a query sentence using the same BART model and use it to search the corpus. Specifically, we search for sentences that are most similar in meaning to the query sentence. After performing the search, we print the top thre sentences from the corpus that are most similar to the query sentence.
 
 This approach can be useful in a variety of natural-processing applications, such as question-answering and information retrieval, where it is essential to find relevant information quickly and accurately.
 
@@ -246,6 +250,7 @@ Overall, this example provides a practical demonstration of how to use pre-train
         cmap="Blues",
     )
 ```
+
 <p align="center">
     <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/similarity-example.png" class="center" />
 </p>
@@ -269,7 +274,7 @@ In the code snippet below, you can see an example of how to employ the sacreBLEU
 # {'score': 67.92604743211312, 'counts': [19, 13, 9, 4], 'totals': [21, 17, 13, 9], 'precisions': [90.47619047619048, 76.47058823529412, 69.23076923076923, 44.44444444444444], 'bp': 1.0, 'sys_len': 21, 'ref_len': 21}
 ```
 
-Similarly, we can use the ROUGE metric to calculate the ROUGE score. This metric is implemented as a wrapper around the [ROUGE library](https://github.com/google-research/google-research/tree/master/rouge). 
+Similarly, we can use the ROUGE metric to calculate the ROUGE score. This metric is implemented as a wrapper around the [ROUGE library](https://github.com/google-research/google-research/tree/master/rouge).
 
 ```python
 >>> # Let's import the ROUGE metric from the metrics module and create an instance of it
@@ -315,13 +320,12 @@ This code snippet shows how to utilize the BARTScore and BERTScore metrics to co
 # {'precision': array([0.943804 , 0.8559195], dtype=float32), 'recall': array([0.943804  , 0.85145634], dtype=float32), 'f1': array([0.943804 , 0.8536821], dtype=float32)}
 ```
 
-
 ## Potential Future Enhancements and Improvements
 
-- [ ] Use the [Numba library](https://numba.pydata.org/) to accelerate the execution time of the algorithms.
-- [ ] Include additional string-based metrics in the miscellaneous module.
-- [ ] Implement [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and [FASTA](https://www.ebi.ac.uk/Tools/sss/fasta/) algorithms. [Work-in-Progress]
-- [ ] Add more customizable and useful visualization features.
+* [ ] Use the [Numba library](https://numba.pydata.org/) to accelerate the execution time of the algorithms.
+* [ ] Include additional string-based metrics in the miscellaneous module.
+* [ ] Implement [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and [FASTA](https://www.ebi.ac.uk/Tools/sss/fasta/) algorithms. [Work-in-Progress]
+* [ ] Add more customizable and useful visualization features.
 
 ## Citation
 
@@ -337,6 +341,10 @@ This code snippet shows how to utilize the BARTScore and BERTScore metrics to co
 ## Thanks
 
 Our project owes a debt of gratitude to the following individuals for their contributions, comments, and feedback: Federico Bianchi, Corinna Coupette, Sebastian Gehrmann, Tayfun Gür, Şule Kahraman, Deniz Keleş, Luke Melas-Kyriazi, Tolúlopé Ògúnrèmí, Alexander "Sasha" Rush, Kyle Swanson, and Garrett Tanzer.
+
+## Contributing
+
+If you are interested in contributing to this library, we encourage you to review our [documentation](https://string2string.readthedocs.io/en/latest/) first to gain a better understanding of the codebase's format and structure. Once you are familiar with the codebase, you are welcome to submit a pull request. We are looking for new contributors to help us drive our efforts forward!
 
 [def1]: https://colab.research.google.com/drive/11dKisbukdDMaZwp_Tnx_64Z7sn0uQD9c?usp=sharing
 [def2]: https://colab.research.google.com/drive/1e8iwBkA7Q4XpmHtxst8_XA-APx4Vsb4j?usp=sharing

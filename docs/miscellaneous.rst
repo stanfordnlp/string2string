@@ -21,9 +21,28 @@ Polynomial Rolling Hash Function
     :members:
 
 
-***************
-Plotting Module
-***************
+***********************
+Plot Pairwise Alignment
+***********************
 
-.. automodule:: string2string.misc.plotting_functions
+.. autoclass:: string2string.misc.plotting_functions.plot_pairwise_alignment
+    :special-members:
+    :members:
+
+
+************
+Plot Heatmap
+************
+
+.. autoclass:: string2string.misc.plotting_functions.plot_heatmap
+    :special-members:
+    :members:
+
+
+**************************************************
+Generate 2D-Scatter Plot of Embeddings with Plotly
+**************************************************
+
+.. autoclass:: string2string.misc.plotting_functions.plot_corpus_embeds_with_plotly
+    :special-members:
     :members:
