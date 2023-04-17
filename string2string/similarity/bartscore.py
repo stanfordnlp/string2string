@@ -248,12 +248,3 @@ class BARTScore:
         else:
             raise NotImplementedError(f"Aggregation method {agg} not implemented yet.")
         return {"score": score_list}
-
-
-# bart_scorer = BARTScore(model_name_or_path='facebook/bart-large-cnn')
-# source_sentences = ["I'm super happy today.", "This is a good idea."]
-# target_sentences = [["I feel good today.", "I feel sad today."], ["Not bad.", "Sounds like a good idea."]] # List[List of references for each test sample]
-# score = bart_scorer.compute(source_sentences, target_sentences, agg="max", batch_size=4)
-
-# print(score)
-# [-2.500810384750366, -1.626237154006958]

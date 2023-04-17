@@ -1,5 +1,5 @@
 """
-    This module contains a wrapper class for the sacreBLEU metric from https://github.com/mjpost/sacreBLEU.
+This module contains a wrapper class for the sacreBLEU metric from https://github.com/mjpost/sacreBLEU.
 """
 
 from typing import Union, Optional, List, Dict
@@ -40,7 +40,7 @@ class sacreBLEU:
         smooth_method: str = 'exp',
         smooth_value: Optional[float] = None,
         lowercase: bool = False,
-        tokenizer_name: str = '13a',
+        tokenizer_name: Optional[str] = 'none',
         use_effective_order: bool = False,
         return_only: List[str] = ['score', 'counts', 'totals', 'precisions', 'bp', 'sys_len', 'ref_len']
     ):
@@ -53,9 +53,9 @@ class sacreBLEU:
             smooth_method (str): The smoothing method. Default is "exp". Other options are "floor", "add-k" and "none".
             smooth_value (Optional[float]): The smoothing value for floor and add-k smoothing. Default is None.
             lowercase (bool): Whether to lowercase the text. Default is False.
-            tokenizer_name (str): The tokenizer name. Default is "13a".
+            tokenizer_name (str): The tokenizer name. Default is "none". Other options are "zh", "13a", "intl", "char", "ja-mecab", "ko-mecab", "spm", "flores101" and "flores200".
             use_effective_order (bool): Whether to use the effective order. Default is False.
-            return_only (Optional[List[str]]): The list of BLEU score components to return. Default is None
+            return_only (Optional[List[str]]): The list of BLEU score components to return. Default is ['score', 'counts', 'totals', 'precisions', 'bp', 'sys_len', 'ref_len'].
 
         Returns:
             Dict[str, float]: The BLEU score (between 0 and 1).
@@ -78,18 +78,21 @@ class sacreBLEU:
         for reference in references:
             if len(reference) != reference_size:
                 raise ValueError('The size of each reference list is not the same.')
-            
+        
+        # Transform the references into a list of list of references.
+        # This is necessary because sacrebleu.corpus_bleu expects a list of list of references.
+        transformed_references = [[refs[i] for refs in references] for i in range(reference_size)]
 
         # Compute the BLEU score using sacrebleu.corpus_bleu
         # This function returns "BLEUScore(score, correct, total, precisions, bp, sys_len, ref_len)"
         bleu_score = corpus_bleu(
             hypotheses=predictions,
-            references=references,
+            references=transformed_references,
             smooth_method=smooth_method,
             smooth_value=smooth_value,
             lowercase=lowercase,
-            tokenize=tokenizer_name,
             use_effective_order=use_effective_order,
+            **(dict(tokenize=ALLOWED_TOKENIZERS[tokenizer_name]) if tokenizer_name != 'none' else {}),
         )
 
         # Get a summary of all the relevant BLEU score components

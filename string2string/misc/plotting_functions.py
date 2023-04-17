@@ -1,10 +1,5 @@
 """
 This module contains the functions for plotting and visualizing the results.
-
-Here is a list of the functions:
-    (a) plot_pairwise_alignment
-    (b) plot_similarity_matrix
-    (c) plot_similarity_matrix_heatmap
 """
 
 # Matplotlib
@@ -40,7 +35,7 @@ def plot_pairwise_alignment(
     save_bbox_inches: str = 'tight',
 ):
     """
-    Plots the pairwise alignment between two strings.
+    This function is designed to generate a plot that displays the alignment between two given lists of characters, strings, integers, or floats (or a numpy array). To create this plot, the function takes in the two lists and a list of tuples that specifies the alignment between the two lists.
 
     Arguments:
         seq1_pieces (Union[str, List[Union[str, int, float], np.ndarray]]): The pieces of the first string or list of strings.
@@ -62,7 +57,7 @@ def plot_pairwise_alignment(
     Returns:
         None
 
-    Remarks:
+    .. note::
         The pairwise alignment is a list of tuples of the form (i, j) where i is the index of the character in the first string and j is the index of the character in the second string.
     """
     # Raise an error if str1 and seq2_pieces are not of the same type
@@ -112,7 +107,6 @@ def plot_pairwise_alignment(
         for i in range(len(indices1)):
             ax.plot([indices1[i], indices2[i]], [border_to_box, 1.-border_to_box], 'o-',  color='#336699', linewidth=0.75, zorder=2)
 
-
     # Draw the characters/strings
     for i, char in enumerate(chars):
         # Get the color of the character if it is in the dictionary
@@ -130,7 +124,6 @@ def plot_pairwise_alignment(
                   alpha=0.99,
                   ))
         
-
     # Set the limits of the axes
     ax.set_xlim(-0.5, max_len  - 0.5)
     ax.set_ylim(-0.5, 1.5)
@@ -182,7 +175,7 @@ def plot_heatmap(
     save_bbox_inches: str = 'tight',
     **kwargs) -> None:
     """
-    Creates a heatmap.
+    This function creates a heatmap visualization based on a given 2D array of data. The input array can represent a variety of data structures, such as a confusion matrix or a correlation matrix, and can be represented as a list of lists or a numpy array. The resulting plot will visually represent the data in the input array using a color-coded grid.
 
     Arguments:
         data (Union[List[List[Union[str, int, float]]], np.ndarray]): The data to plot.
@@ -301,8 +294,7 @@ def plot_corpus_embeds_with_plotly(
     save_path: Optional[str] = None,
     ) -> go.Figure:
     """
-    This function takes a corpus of embeddings and corresponding labels and plots them in a 2D scatter plot using plotly.
-    It also optionally takes a query embedding and corresponding label and plots it in a different color and shape.
+    The purpose of this function is to generate a 2D scatter plot using plotly, based on a given corpus of embeddings and their corresponding labels. The function takes in the embeddings and labels as input, and plots them in the scatter plot with each point represented by a particular color and shape based on its label. Additionally, the function can also take in a query embedding and its corresponding label as optional inputs, which will be plotted separately on the scatter plot with a distinct color and shape.
 
     Arguments:
         corpus_embeddings: A list of lists or a numpy array or a torch tensor of corpus embeddings (e.g. sentence embeddings).

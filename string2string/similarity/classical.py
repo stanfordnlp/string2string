@@ -1,18 +1,5 @@
 """
-    This module contains the classes for the similarity metrics and functions.
-
-    Here is a list of the similarity metrics:
-        (a) Longest Common Subsequence (LCS) based similarity
-        (b) Jaro similarity
-        (c) Cosine similarity (using word embeddings)
-        (d) BERTScore
-        (e) BARTScore
-        (f) BLEURT
-        (g) ROUGE
-        (h) METEOR
-        (i) TER
-        (j) WER
-        (k) CER
+This module contains the classes for the similarity metrics and functions.
 """
 
 

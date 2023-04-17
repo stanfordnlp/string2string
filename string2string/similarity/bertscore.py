@@ -268,27 +268,3 @@ class BERTScore:
             )
         # Otherwise, just return the output
         return scores
-    
-
-# bert_scorer = BERTScore(lang="en")
-# predictions = ["hello there", "general kenobi"]
-# references = ["hello there", "general kenobi"]
-# score = bert_scorer.compute(predictions, references, return_hash=True)
-
-# print('score:')
-# print(score)
-
-# # print the type of each element in the score tuple
-# print('score type:')
-# print(type(score[0][0]))
-# print(type(score[0][1]))
-# print(type(score[0][2]))
-# print(type(score[1]))
-
-# # score:
-# # <class 'torch.Tensor'>
-# # <class 'torch.Tensor'>
-# # <class 'torch.Tensor'>
-# # <class 'str'> / optional
-
-# # score type: 

@@ -1,5 +1,5 @@
 """
-    This module implements the word embeddings class.
+This module implements the word embeddings class.
 """
 # from tqdm import tqdm
 import numpy as np
@@ -199,8 +199,6 @@ class GloVeEmbeddings(NeuralEmbeddings):
                 # Extract the words and the embeddings
                 words = []
                 embeddings = np.zeros((len(lines), int(file_embed_dim)))
-                # for line in tqdm(lines):
-                # for i, line in tqdm(enumerate(lines)):
                 for i, line in enumerate(lines):
                     line = line.split(' ')
                     words.append(line[0])
@@ -456,29 +454,3 @@ class FastTextEmbeddings(NeuralEmbeddings):
             Tensor: The embeddings of the given tokens.
         """
         return self.__call__(tokens)
-        
-
-# # Test
-# glove = GloVeEmbeddings(
-#     model='glove.6B.200d',
-#     dim=50,
-#     force_download=False,
-#     dir='/Users/machine/.cache/torch/hub/glove.6B.200d'
-# )
-
-# # debug
-# print(glove('the'))
-
-# # debug
-# # print(glove(['the', 'and']))
-
-
-# ft = FastTextEmbeddings(
-#     model='cc.en.300.bin',
-#     # model='wiki.en.bin',
-#     force_download=False,
-#     dir='/Users/machine/.cache/torch/hub/cc.en.300.bin'
-# )
-
-# # debug
-# print(ft('the'))

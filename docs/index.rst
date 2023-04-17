@@ -15,17 +15,9 @@ Welcome to string2string's documentation!
    matching
    similarity
    embedding
+   metrics
+   miscellaneous
 
    :caption: Hands-On Tutorials:
    hupd_example
    plagiarism_detection
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-

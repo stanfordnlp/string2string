@@ -46,7 +46,7 @@ class PolynomialRollingHash(HashFunction):
         modulus: int = 101, # 65537,
     ) -> None:
         """
-        Initializes the class.
+        Initializes the polynomial rolling hash function.
 
         Arguments:
             base (int): The base to use. Default is 256.
@@ -55,8 +55,8 @@ class PolynomialRollingHash(HashFunction):
         Returns:
             None
 
-        Remark:
-            (a) Why 65537? Because it is a Fermat prime.
+        .. note::
+            * Why 65537? Because it is a Fermat prime.
         """
         super().__init__()
 

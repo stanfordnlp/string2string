@@ -8,8 +8,6 @@ from typing import List
 class Tokenizer:
     """
     This class contains the tokenizer.
-
-    This class is a wrapper for the ROUGE metric from Google Research's rouge_score package.
     """
 
     def __init__(self,

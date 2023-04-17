@@ -4,14 +4,19 @@
 
 # string2string
 
-
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/string2string)](https://badge.fury.io/py/string2string)
 [![PyPI version](https://badge.fury.io/py/string2string.svg)](https://badge.fury.io/py/string2string)
 [![Downloads](https://pepy.tech/badge/string2string)](https://pepy.tech/project/string2string)
 [![license](https://img.shields.io/github/license/suzgunmirac/string2string.svg)](https://github.com/suzgunmirac/string2string/blob/main/LICENSE.txt)
-[![Coverage Status](https://coveralls.io/repos/github/suzgunmirac/string2string/badge.svg?branch=main)](https://coveralls.io/github/suzgunmirac/string2string?branch=main)
+[![arXiv](https://img.shields.io/badge/arXiv-2211.07634-b31b1b.svg)](https://arxiv.org/abs/2211.07634)
 
-**Table of Contents:** [Getting Started](#getting-started) | [Tutorials](#tutorials) | [Example Usage](#example-usage) | [Documentation](https://string2string.readthedocs.io/en/latest/) | [Citation](#citation) | [Thanks](#thanks) 
+* **Table of Contents:** [**Getting Started**](#getting-started) | [**Tutorials**](#tutorials) | [**Example Usage**](#example-usage) | [**Documentation**](https://string2string.readthedocs.io/en/latest/) | [**Citation**](#citation) | [**Thanks**](#thanks) 
+
+The **string2string** library is an open-source tool that offers a comprehensive suite of efficient algorithms for a broad range of string-to-string problems. It includes both traditional algorithmic solutions and recent advanced neural approaches to address various problems in pairwise string alignment, distance measurement, lexical and semantic search, and similarity analysis. Additionally, the library provides several helpful visualization tools and metrics to facilitate the interpretation and analysis of these methods. 
+
+The library features notable algorithms such as the [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm) for pairwise local alignment, the [Hirschberg algorithm](https://en.wikipedia.org/wiki/Hirschberg%27s_algorithm) for global alignment, the [Wagner-Fisher algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm) for [edit distance](https://en.wikipedia.org/wiki/Edit_distance), [BARTScore](https://github.com/neulab/BARTScore) and [BERTScore](https://github.com/Tiiiger/bert_score) for similarity analysis, the [Knuth-Morris-Pratt](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) algorithm for lexical search, and [Faiss](https://github.com/facebookresearch/faiss) for [semantic search](https://en.wikipedia.org/wiki/Semantic_search). Moreover, it wraps existing highly efficient and widely-used implementations of certain frameworks and metrics, such as [sacreBLEU](https://github.com/mjpost/sacrebleu) and [ROUGE](https://github.com/google-research/google-research/tree/master/rouge), whenever it is appropriate and suitable. 
+
+In general, the string2string library seeks to provide extensive coverage and increased flexibility compared to existing libraries for strings. It can be used for many downstream applications, tasks, and problems in natural-language processing, bioinformatics, and computational social sciences. With its comprehensive suite of algorithms, visualization tools, and metrics, the string2string library is a valuable resource for researchers and practitioners in various fields.
 
 ## Getting Started
 
@@ -38,7 +43,7 @@ Once the installation is complete, you can import the library and start using it
 
 ### Alignment
 
-In the following example, we illustrate how to align two sequences of strings globally by using the Needleman-Wunsch algorithm. This algorithm, along with other alignment techniques, can be found in the alignment module of the library. The code snippet below demonstrates how to apply the Needleman-Wunsch algorithm to perform a global alignment of two given strings.
+In the following example, we illustrate how to align two sequences of strings globally by using the [Needleman-Wunsch algorithm](https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm). This algorithm, along with other alignment techniques, can be found in the alignment module of the library. The code snippet below demonstrates how to apply the Needleman-Wunsch algorithm to perform a global alignment of two given strings.
 
 This example provides a practical illustration of how to use the Needleman-Wunsch algorithm to solve the problem of sequence alignment, which is a fundamental problem in bioinformatics.
 
@@ -69,10 +74,9 @@ X | ATT | - | GC | GC | A | A | G
     <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/alignment-example.png" class="center" />
 </p>
 
-
 ### Distance
 
-The following code snippet demonstrates how to use the Levenshtein edit distance algorithm to compute the edit distance between two strings, at the character level and at the word level.
+The following code snippet demonstrates how to use the [Levenshtein edit distance algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance) to compute the edit distance between two strings, at the character level and at the word level.
 
 ```python
 >>> # Let's create a Levenshtein edit distance class instance, with the default (unit cost) weights, from the distance module
@@ -106,7 +110,7 @@ The following code snippet demonstrates how to use the Levenshtein edit distance
 
 ### Search
 
-The following code snippet demonstrates how to use the Knuth-Morrs-Pratt (KMP) search algorithm to find the index of a pattern in a text.
+The following code snippet demonstrates how to use the [Knuth-Morrs-Pratt (KMP) search algorithm](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) to find the index of a pattern in a text.
 
 ```python
 >>> # Let's create a KMPSearch class instance from the search module
@@ -126,7 +130,7 @@ The following code snippet demonstrates how to use the Knuth-Morrs-Pratt (KMP) s
 
 ### Faiss Semantic Search
 
-The example below demonstrates how to use the [Faiss](https://github.com/facebookresearch/faiss) tool developed by FAIR to perform semantic search. First, we use the BART-Large model to generate embeddings for a small corpus of 25 sentences. To perform the search, we first encode a query sentence using the same BART model and use it to search the corpus. Specifically, we search for sentences that are most similar in meaning to the query sentence. After performing the search, we print the top thre sentences from the corpus that are most similar to the query sentence. 
+The example below demonstrates how to use the [Faiss](https://github.com/facebookresearch/faiss) tool developed by FAIR to perform semantic search. First, we use the [BART-Large model from Hugging Face](https://huggingface.co/facebook/bart-large) to generate embeddings for a small corpus of 25 sentences. To perform the search, we first encode a query sentence using the same BART model and use it to search the corpus. Specifically, we search for sentences that are most similar in meaning to the query sentence. After performing the search, we print the top thre sentences from the corpus that are most similar to the query sentence. 
 
 This approach can be useful in a variety of natural-processing applications, such as question-answering and information retrieval, where it is essential to find relevant information quickly and accurately.
 
@@ -178,7 +182,7 @@ This approach can be useful in a variety of natural-processing applications, suc
 >>> top_k = 5
 >>> top_k_results = faiss_search.search(query=query, k = top_k)
 
-# Let's define a function to print the results of the search.
+>>> # Let's define a function to print the results of the search.
 >>> def print_results(query, results, top_k):
         # Let's first print the query.
         print(f'Query: "{query}"\n')
@@ -196,11 +200,11 @@ This approach can be useful in a variety of natural-processing applications, suc
 #  - 3: "Coffee is my go-to drink in the morning." with a similarity score of 238.85
 ```
 
-### Similarity
+### Cosine Similarity (with Glove and fastText Embeddings)
 
-The following example demonstrates how to use pre-trained GloVe embeddings to calculate the cosine similarity between different pairs of words. Specifically, we compute the cosine similarity between the embeddings of four words: "cat", "dog", "phone", and "computer". We then create a similarity matrix and use the plot_heatmap function in the visualization module to plot this matrix.
+The following example demonstrates how to use [pre-trained GloVe embeddings](https://nlp.stanford.edu/projects/glove/) to calculate the cosine similarity between different pairs of words. Specifically, we compute the cosine similarity between the embeddings of four words: "cat", "dog", "phone", and "computer". We then create a similarity matrix and use the plot_heatmap function in the visualization module to plot this matrix.
 
-Overall, this example provides a practical demonstration of how to use pre-trained embeddings such as GloVe and fastText to quantify the semantic similarity between pairs of words, which can be useful in a variety of natural-language processing tasks.
+Overall, this example provides a practical demonstration of how to use pre-trained embeddings such as [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/) to quantify the semantic similarity between pairs of words, which can be useful in a variety of natural-language processing tasks.
 
 ```python
 >>> # Let's create a Cosine Similarity class instance from the similarity module
@@ -246,19 +250,93 @@ Overall, this example provides a practical demonstration of how to use pre-train
     <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/similarity-example.png" class="center" />
 </p>
 
+### Metrics (sacreBLEU and ROUGE)
+
+In the code snippet below, you can see an example of how to employ the sacreBLEU metric for calculating the BLEU score. This metric is implemented as a wrapper around the [sacreBLEU library](https://github.com/mjpost/sacrebleu). The computation is performed by providing a list of candidate sentences and a list of reference sentences as input and calling the compute method of the metric instance.
+
+```python
+>>> # Let's import the sacreBLEU metric from the metrics module and create an instance of it
+>>> from string2string.metrics import sacreBLEU
+>>> sbleu = sacreBLEU()
+
+>>> # Let's define a list of candidate sentences and a list of reference sentences
+>>> candidates = ['The sun is shining.', 'The birds are chirping.', 'She is playing the guitar.', 'He is cooking dinner.']
+>>> references = [['The sun is shining.', 'The sun is bright.'], ['The birds are singing.', 'The harold is singing.'], ['Julie is playing the flute.', 'She is playing the piano.'], ['Chef is cooking dinner.', 'He is cooking lunch.']]
+
+>>> # Compute the sacreBLEU score
+>>> result = sbleu.compute(candidates, references)
+>>> print(result)
+# {'score': 67.92604743211312, 'counts': [19, 13, 9, 4], 'totals': [21, 17, 13, 9], 'precisions': [90.47619047619048, 76.47058823529412, 69.23076923076923, 44.44444444444444], 'bp': 1.0, 'sys_len': 21, 'ref_len': 21}
+```
+
+Similarly, we can use the ROUGE metric to calculate the ROUGE score. This metric is implemented as a wrapper around the [ROUGE library](https://github.com/google-research/google-research/tree/master/rouge). 
+
+```python
+>>> # Let's import the ROUGE metric from the metrics module and create an instance of it
+>>> from string2string.metrics import ROUGE
+>>> rogue = ROUGE()
+
+>>> # Let's define a list of candidate sentences and a list of reference sentences
+>>> candidates = ["The cat is sitting on the mat.", "The dog is barking at the mailman.", "The bird is singing in the tree."] 
+>>> references = [["The cat is sitting on the mat."], ["The dog is barking at the postman."], ["The bird sings on the tree."]]
+
+>>> # Compute the ROUGE score
+>>> result = rogue.compute(candidates, references)
+>>> print(result)
+# {'rouge1': 0.8241758241758242, 'rouge2': 0.7323232323232324, 'rougeL': 0.8241758241758242, 'rougeLsum': 0.8241758241758242}
+```
+
+### BARTScore and BERTScore
+
+This code snippet shows how to utilize the BARTScore and BERTScore metrics to compute their corresponding scores. These similarity metrics serve as wrappers around the BARTScore and BERTScore libraries.
+
+```python
+>>> # Importing the BERTScore and BARTScore classes from the similarity module
+>>> from string2string.similarity import BERTScore, BARTScore
+
+>>> # Initializing the BARTScore metric
+>>> bart_scorer = BARTScore(model_name_or_path='facebook/bart-large-cnn')
+
+>>> # Initializing the BERTScore metric
+>>> bert_scorer = BERTScore(lang="en")
+
+>>> # Define the source and target sentences
+>>> source_sentences = ["I'm super happy today.", "John von Neumann was a mathematician and physicist."]
+>>> target_sentences = ["I feel pretty wonderful today.", "Kurt Vonnegut's Slaughterhouse Five had a profound impact on many people."]
+
+>>> # Compute the BARTScore
+>>> score = bart_scorer.compute(source_sentences, target_sentences, agg="mean", batch_size=4)
+>>> print(score)
+# {'score': array([-2.77911878, -4.60774326])}
+
+>>> # Compute the BERTScore
+>>> score = bert_scorer.compute(source_sentences, target_sentences)
+>>> print(score)
+# {'precision': array([0.943804 , 0.8559195], dtype=float32), 'recall': array([0.943804  , 0.85145634], dtype=float32), 'f1': array([0.943804 , 0.8536821], dtype=float32)}
+```
+
+
+## Potential Future Enhancements and Improvements
+
+- [ ] Use the [Numba library](https://numba.pydata.org/) to accelerate the execution time of the algorithms.
+- [ ] Include additional string-based metrics in the miscellaneous module.
+- [ ] Implement [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and [FASTA](https://www.ebi.ac.uk/Tools/sss/fasta/) algorithms. [Work-in-Progress]
+- [ ] Add more customizable and useful visualization features.
 
 ## Citation
 
-```
-@misc{suzgun2023_string2string,
-    [TBD]
+```bibtex
+@article{suzgun2023string2string,
+  title={string2string: A Modern Python Library for String-to-String Algorithms},
+  author={Suzgun, Mirac and Shieber, Stuart M and Jurafsky, Dan},
+  journal={arXiv preprint arXiv:[TBD].[TBD]},
+  year={2023}
 }
 ```
 
 ## Thanks
 
-We would like to thank the following people for their contributions to this project: [TBD]
-
+Our project owes a debt of gratitude to the following individuals for their contributions, comments, and feedback: Federico Bianchi, Corinna Coupette, Sebastian Gehrmann, Tayfun Gür, Şule Kahraman, Deniz Keleş, Luke Melas-Kyriazi, Tolúlopé Ògúnrèmí, Alexander "Sasha" Rush, Kyle Swanson, and Garrett Tanzer.
 
 [def1]: https://colab.research.google.com/drive/11dKisbukdDMaZwp_Tnx_64Z7sn0uQD9c?usp=sharing
 [def2]: https://colab.research.google.com/drive/1e8iwBkA7Q4XpmHtxst8_XA-APx4Vsb4j?usp=sharing
