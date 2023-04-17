@@ -36,7 +36,7 @@ Once the installation is complete, you can import the library and start using it
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def2] [Tutorial: Distance Tasks and Algorithms][def2]
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def3] [Tutorial: Search Tasks and Algorithms][def3]
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def4] [Tutorial: Similarity Tasks and Algorithms][def4]
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def5] [Hands-on Tutorial: Semantic Search and Visualization of USPTO Patents][def5]
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def5] [Hands-On Tutorial: Semantic Search and Visualization of USPTO Patents][def5]
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)][def6] [Hands-On Tutorial: Plagiarism Detection of Essays][def6]
 
 ## Example Usage

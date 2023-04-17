@@ -27,12 +27,21 @@ BARTScore
     :members:
 
 
-************************
-LCSubsequence Similarity
-************************
-.. autoclass:: string2string.similarity.LCSimilarity
+********************************
+LCSubstringSimilarity Similarity
+********************************
+.. autoclass:: string2string.similarity.LCSubstringSimilarity
     :special-members: __init__
     :members:
+
+
+**********************************
+LCSubsequenceSimilarity Similarity
+**********************************
+.. autoclass:: string2string.similarity.LCSubsequenceSimilarity
+    :special-members: __init__
+    :members:
+
 
 ***************
 Jaro Similarity

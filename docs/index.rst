@@ -18,6 +18,9 @@ Welcome to string2string's documentation!
    metrics
    miscellaneous
 
-   :caption: Hands-On Tutorials:
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials:
+
    hupd_example
    plagiarism_detection

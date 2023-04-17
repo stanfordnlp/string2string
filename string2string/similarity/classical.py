@@ -52,7 +52,7 @@ class LCSubsequenceSimilarity(LongestCommonSubsequence):
         
 
 # Longest Common Substring based similarity class
-class LCSubsubstringSimilarity(LongestCommonSubstring):
+class LCSubstringSimilarity(LongestCommonSubstring):
     """
     This class contains the Longest Common Substring similarity metric.
 
