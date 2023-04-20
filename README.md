@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/string2string-overview.png" class="center" />
+    <img src="https://github.com/stanfordnlp/string2string/blob/main/fables/string2string-overview.png" class="center" />
 </p>
 
 # string2string
@@ -7,12 +7,12 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/string2string)](https://badge.fury.io/py/string2string)
 [![PyPI version](https://badge.fury.io/py/string2string.svg)](https://badge.fury.io/py/string2string)
 [![Downloads](https://pepy.tech/badge/string2string)](https://pepy.tech/project/string2string)
-[![license](https://img.shields.io/github/license/suzgunmirac/string2string.svg)](https://github.com/suzgunmirac/string2string/blob/main/LICENSE.txt)
+[![license](https://img.shields.io/github/license/stanfordnlp/string2string.svg)](https://github.com/stanfordnlp/string2string/blob/main/LICENSE.txt)
 [![arXiv](https://img.shields.io/badge/arXiv-2211.07634-b31b1b.svg)](https://arxiv.org/abs/2211.07634)
 
 ## Table of Contents
 
-[**Getting Started**](#getting-started) | [**Tutorials**](#tutorials) | [**Example Usage**](#example-usage) | [**Documentation**](https://string2string.readthedocs.io/en/latest/) | [**Tests**](https://github.com/suzgunmirac/string2string/tree/main/tests) | [**Citation**](#citation) | [**Thanks**](#thanks) | [**Contributing**](#contributing) 
+[**Getting Started**](#getting-started) | [**Tutorials**](#tutorials) | [**Example Usage**](#example-usage) | [**Documentation**](https://string2string.readthedocs.io/en/latest/) | [**Tests**](https://github.com/stanfordnlp/string2string/tree/main/tests) | [**Citation**](#citation) | [**Thanks**](#thanks) | [**Contributing**](#contributing)
 
 ## Abstract
 
@@ -26,7 +26,7 @@ In general, the [**string2string**](https://string2string.readthedocs.io/en/late
 
 Install the string2string library by running the following command in your terminal:
 
-```python
+```bash
 pip install string2string
 ```
 
@@ -75,7 +75,7 @@ X | ATT | - | GC | GC | A | A | G
 ```
 
 <p align="center">
-    <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/alignment-example.png" class="center" />
+    <img src="https://github.com/stanfordnlp/string2string/blob/main/fables/alignment-example.png" class="center" />
 </p>
 
 ### Distance
@@ -252,7 +252,7 @@ Overall, this example provides a practical demonstration of how to use pre-train
 ```
 
 <p align="center">
-    <img src="https://github.com/suzgunmirac/string2string/blob/main/fables/similarity-example.png" class="center" />
+    <img src="https://github.com/stanfordnlp/string2string/blob/main/fables/similarity-example.png" class="center" />
 </p>
 
 ### Metrics (sacreBLEU and ROUGE)

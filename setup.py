@@ -4,7 +4,7 @@ setup(
     name="string2string",
     version="0.0.146",
     description="String-to-String Algorithms for Natural Language Processing",
-    url="https://github.com/suzgunmirac/string2string",
+    url="https://github.com/stanfordnlp/string2string",
     author="Mirac Suzgun",
     author_email="msuzgun@cs.stanford.edu",
     license="MIT",
