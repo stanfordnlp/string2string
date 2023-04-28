@@ -8,7 +8,7 @@
 [![PyPI version](https://badge.fury.io/py/string2string.svg)](https://badge.fury.io/py/string2string)
 [![Downloads](https://pepy.tech/badge/string2string)](https://pepy.tech/project/string2string)
 [![license](https://img.shields.io/github/license/stanfordnlp/string2string.svg)](https://github.com/stanfordnlp/string2string/blob/main/LICENSE.txt)
-[![arXiv](https://img.shields.io/badge/arXiv-2211.07634-b31b1b.svg)](https://arxiv.org/abs/2211.07634)
+[![arXiv](https://img.shields.io/badge/arXiv-2304.14395-b31b1b.svg)](https://arxiv.org/abs/2304.14395)
 
 ## Table of Contents
 
@@ -333,14 +333,14 @@ This code snippet shows how to utilize the BARTScore and BERTScore metrics to co
 @article{suzgun2023string2string,
   title={string2string: A Modern Python Library for String-to-String Algorithms},
   author={Suzgun, Mirac and Shieber, Stuart M and Jurafsky, Dan},
-  journal={arXiv preprint arXiv:[TBD].[TBD]},
+  journal={arXiv preprint arXiv:2304.14395},
   year={2023}
 }
 ```
 
 ## Thanks
 
-Our project owes a debt of gratitude to the following individuals for their contributions, comments, and feedback: Federico Bianchi, Corinna Coupette, Sebastian Gehrmann, Tayfun Gür, Şule Kahraman, Deniz Keleş, Luke Melas-Kyriazi, Tolúlopé Ògúnrèmí, Alexander "Sasha" Rush, Kyle Swanson, and Garrett Tanzer.
+Our project owes a debt of gratitude to the following individuals for their contributions, comments, and feedback: Federico Bianchi, Corinna Coupette, Sebastian Gehrmann, Tayfun Gür, Şule Kahraman, Deniz Keleş, Luke Melas-Kyriazi, Christopher Manning, Tolúlopé Ògúnrèmí, Alexander "Sasha" Rush, Kyle Swanson, and Garrett Tanzer.
 
 ## Contributing
 

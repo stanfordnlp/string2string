@@ -1,9 +1,14 @@
 from setuptools import find_packages, setup
 
+with open('README.md') as f:
+    readme = f.read()
+
 setup(
     name="string2string",
-    version="0.0.146",
+    version="0.0.150",
     description="String-to-String Algorithms for Natural Language Processing",
+    long_description=readme,
+    long_description_content_type='text/markdown',
     url="https://github.com/stanfordnlp/string2string",
     author="Mirac Suzgun",
     author_email="msuzgun@cs.stanford.edu",

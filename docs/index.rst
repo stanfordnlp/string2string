@@ -6,13 +6,6 @@
 Welcome to string2string's documentation!
 =========================================
 
-.. raw:: html
-
-   <p align="center">
-    <img src="https://github.com/stanfordnlp/string2string/blob/main/fables/string2string-overview.png" class="center" />
-   </p>
-
-
 The **string2string** library is an open-source tool that offers a comprehensive suite of efficient algorithms for a broad range of string-to-string problems. It includes both traditional algorithmic solutions and recent advanced neural approaches to address various problems in pairwise string alignment, distance measurement, lexical and semantic search, and similarity analysis. Additionally, the library provides several helpful visualization tools and metrics to facilitate the interpretation and analysis of these methods.
 
 The library features notable algorithms such as the `Smith-Waterman algorithm <https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm>`_ for pairwise local alignment, the `Hirschberg algorithm <https://en.wikipedia.org/wiki/Hirschberg%27s_algorithm>`_ for global alignment, the `Wagner-Fisher algorithm <https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm>`_ for `edit distance <https://en.wikipedia.org/wiki/Edit_distance>`_, `BARTScore <https://github.com/neulab/BARTScore>`_ and `BERTScore <https://github.com/Tiiiger/bert_score>`_ for similarity analysis, the `Knuth-Morris-Pratt <https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm>`_ algorithm for lexical search, and `Faiss <https://github.com/facebookresearch/faiss>`_ for `semantic search <https://en.wikipedia.org/wiki/Semantic_search>`_. Moreover, it wraps existing highly efficient and widely-used implementations of certain frameworks and metrics, such as `sacreBLEU <https://github.com/mjpost/sacrebleu>`_ and `ROUGE <https://github.com/google-research/google-research/tree/master/rouge>`_, whenever it is appropriate and suitable.
@@ -65,3 +58,23 @@ Tutorials
 
    hupd_example
    plagiarism_detection
+
+
+Citation
+--------
+
+.. code-block:: bibtex
+
+   @article{suzgun2023string2string,
+      title={string2string: A Modern Python Library for String-to-String Algorithms},
+      author={Suzgun, Mirac and Shieber, Stuart M and Jurafsky, Dan},
+      journal={arXiv preprint arXiv:2304.14395},
+      year={2023}
+   }
+
+
+
+Thanks
+------
+
+Our project owes a debt of gratitude to the following individuals for their contributions, comments, and feedback: Federico Bianchi, Corinna Coupette, Sebastian Gehrmann, Tayfun Gür, Şule Kahraman, Deniz Keleş, Luke Melas-Kyriazi, Christopher Manning, Tolúlopé Ògúnrèmí, Alexander "Sasha" Rush, Kyle Swanson, and Garrett Tanzer.
