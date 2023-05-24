@@ -71,7 +71,8 @@ X | ATT | - | GC | GC | A | A | G
 - | ATT | G | GC | GC | A | C | G
 
 >>> alg_path, alg_seq1_parts, alg_seq2_parts = nw.get_alignment_strings_and_indices(aligned_seq1, aligned_seq2)
->>> plot_pairwise_alignment(seq1_pieces = alg_seq1_parts, seq2_pieces = alg_seq1_parts, alignment = alignment_path, str2colordict = {'-': 'lightgray', 'ATT': 'indianred', 'GC': 'darkseagreen', 'A': 'skyblue', 'G': 'palevioletred', 'C': 'steelblue'}, title = 'Global Alignment Between Two Sequences of Strings')
+>>> from string2string.misc.plotting_functions import plot_pairwise_alignment
+>>> plot_pairwise_alignment(seq1_pieces = alg_seq1_parts, seq2_pieces = alg_seq2_parts, alignment = alg_path, str2colordict = {'-': 'lightgray', 'ATT': 'indianred', 'GC': 'darkseagreen', 'A': 'skyblue', 'G': 'palevioletred', 'C': 'steelblue'}, title = 'Global Alignment Between Two Sequences of Strings')
 ```
 
 <p align="center">
