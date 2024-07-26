@@ -25,6 +25,8 @@ setup(
         "fasttext",
         "pandas",
         "joblib",
+        "sacrebleu",
+        "rouge_score"
     ],
     tests_require=["pytest"],
     classifiers=[
