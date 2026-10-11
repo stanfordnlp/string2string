@@ -284,6 +284,57 @@ class AlignmentTestCase(TestCase):
         self.assertEqual(aligned_str2, "G | C | A | T | G | C | U")
 
 
+    # Testing NeedlemanWunsch and Hirschberg with a match dictionary and with the gap character in the inputs
+    def test_match_weight_consistency(self):
+        # Give "A" and "G" (both purines) a positive match weight.
+        match_dict = {"A": {"G": 1}, "G": {"A": 1}}
+        needlemanwunsch = NeedlemanWunsch(match_dict=match_dict)
+        # Example 1
+        aligned_str1, aligned_str2 = needlemanwunsch.get_alignment(
+            str1 = "A",
+            str2 = "G",
+        )
+        self.assertEqual(aligned_str1, "A")
+        self.assertEqual(aligned_str2, "G")
+        # Example 2
+        aligned_str1, aligned_str2 = needlemanwunsch.get_alignment(
+            str1 = "AT",
+            str2 = "GT",
+        )
+        self.assertEqual(aligned_str1, "A | T")
+        self.assertEqual(aligned_str2, "G | T")
+        # Example 3
+        hirschberg = Hirschberg(match_dict=match_dict)
+        aligned_str1, aligned_str2 = hirschberg.get_alignment(
+            str1 = "ACA",
+            str2 = "AAG",
+        )
+        self.assertEqual(aligned_str1, "A | C | A")
+        self.assertEqual(aligned_str2, "A | A | G")
+
+        # Another set of examples, where the inputs contain the gap character and the gap weight differs from the mismatch weight
+        needlemanwunsch = NeedlemanWunsch(
+            match_weight=1,
+            mismatch_weight=-1,
+            gap_weight=-2,
+        )
+        # Example 4
+        aligned_str1, aligned_str2 = needlemanwunsch.get_alignment(
+            str1 = "a-b",
+            str2 = "axb",
+        )
+        self.assertEqual(aligned_str1, "a | - | b")
+        self.assertEqual(aligned_str2, "a | x | b")
+        # Example 5
+        hirschberg = Hirschberg()
+        aligned_str1, aligned_str2 = hirschberg.get_alignment(
+            str1 = ["well", "-", "known"],
+            str2 = ["well", "x", "known"],
+        )
+        self.assertEqual(aligned_str1, "well | - | known")
+        self.assertEqual(aligned_str2, "well | x | known")
+
+
     # Testing SmithWaterman
     def test_smithwaterman(self):
         smithwaterman = SmithWaterman(

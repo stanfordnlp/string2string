@@ -374,7 +374,8 @@ class NeedlemanWunsch(StringAlignment):
         # Backtrack until the current position is (0, 0).
         while i > 0 and j > 0:
             # If the current position is the result of a match/mismatch, add the characters to the aligned strings and move to the diagonal.
-            if score_matrix[i, j] == score_matrix[i - 1, j - 1] + self.get_score(str1[i - 1], str2[j - 1]):
+            # Note that the match/mismatch weight must come from get_match_weight(), the same function used to fill the score matrix in get_alignment(); otherwise, this check can fail when a match dictionary is given or when the inputs contain the gap character.
+            if score_matrix[i, j] == score_matrix[i - 1, j - 1] + self.get_match_weight(str1[i - 1], str2[j - 1]):
                 insert_str1, insert_str2 = self.add_space_to_shorter(str1[i - 1], str2[j - 1])
                 i -= 1
                 j -= 1
@@ -667,8 +668,9 @@ class Hirschberg(NeedlemanWunsch):
             score_matrix[1, 0] = score_matrix[0, 0] + self.get_gap_weight(str1[i - 1]) # deletion cost
 
             for j in range(1, len2 + 1):
+                # Note that the match/mismatch weight must come from get_match_weight(), as in NeedlemanWunsch.get_alignment(), so that the split point is chosen with the same weights as the final alignment.
                 score_matrix[1, j] = max(
-                    score_matrix[0, j - 1] + self.get_score(str1[i - 1], str2[j - 1]), # match/mismatch cost
+                    score_matrix[0, j - 1] + self.get_match_weight(str1[i - 1], str2[j - 1]), # match/mismatch cost
                     score_matrix[0, j] + self.get_gap_weight(str1[i - 1]), # deletion cost
                     score_matrix[1, j - 1] + self.get_gap_weight(str2[j - 1]) # insertion cost
                 )
